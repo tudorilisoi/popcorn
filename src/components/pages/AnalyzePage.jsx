@@ -8,9 +8,6 @@ export default function AnalyzePage(props) {
     return (
         <div>
             <h1>{movie.title}</h1>
-            {/* <pre>
-                {JSON.stringify(props.movie, 2, 2)}
-            </pre> */}
             <img src={movie.poster} style={style}></img>
         </div>
     )

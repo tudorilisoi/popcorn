@@ -21,7 +21,7 @@ export default class SearchForm extends Component {
                 this.props.history.push('/search/' + val)
             }}>
 
-                <input type="text" ref={this._inputRef}></input>
+                <input name="query" type="text" ref={this._inputRef}></input>
             </form>
         )
     }
