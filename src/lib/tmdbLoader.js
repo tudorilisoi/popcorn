@@ -25,12 +25,19 @@ export function searchByTitle(title) {
 
 // Find Movie by ID
 export function searchById(id) {
-    return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=c582a638ad7c6555e68892f076404dae&language=en-US`).then(res => {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=c582a638ad7c6555e68892f076404dae&language=en-US`
+    return fetch(url).then(res => {
         if (!res.ok) {
             return Promise.reject(res.statusText);
         }
         return res.json();
     })
+        .then(movie => ({
+            title: movie.title,
+            id: movie.id,
+            poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        }))
+        .then(res => { cacheByUrl[url] = res; return res });
 }
 
 
