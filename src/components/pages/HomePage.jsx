@@ -16,7 +16,7 @@ export default function HomePage(props) {
     ))
     return (
         <div>
-            <h1>Home!</h1>
+            <h1>Popcorn v1 alpha</h1>
             <h3>{message}</h3>
             <SearchForm history={history} initialValue={searchString} key={searchString || 'empty'} />
             {results}
