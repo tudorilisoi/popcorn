@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm'
 import { searchByTitle } from '../../lib/tmdbLoader'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
+import slugify from 'slugify'
 
 
 //props: searchString, searchResults, history
@@ -12,14 +13,14 @@ export default function HomePage(props) {
     const message = !searchString ? 'Please search for a movie' : `Results for ${searchString}`
     const results = !searchResults.length ? null : searchResults.map(movie => (
         <div key={movie.id}>
-            <Link to={'/analyze/' + movie.id}>{movie.title}</Link>
+            <Link to={`/analyze/${movie.id}/${slugify(movie.title)}`}>{movie.title}</Link>
         </div>
     ))
     return (
-        <div>
+        <div key={searchString || 'empty'}  >
             <h1>Popcorn v1 alpha</h1>
             <h3>{message}</h3>
-            <SearchForm history={history} initialValue={searchString} key={searchString || 'empty'} />
+            <SearchForm history={history} initialValue={searchString}  />
             {results}
         </div>
     )

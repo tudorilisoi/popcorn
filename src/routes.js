@@ -11,7 +11,7 @@ export default (
   <Switch>
     <Route exact path="/" component={HomePageWithData} />
     <Route path="/search/:searchString" component={HomePageWithData} />
-    <Route exact path="/analyze/:id" component={AnalyzePageWithData} />
+    <Route exact path="/analyze/:id/:title" component={AnalyzePageWithData} />
     <Route path="*" component={NotFoundPage} />
   </Switch>
 );
