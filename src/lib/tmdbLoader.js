@@ -9,7 +9,6 @@ const normalizeMovie = movie => ({
 })
 
 function cachedFetch(url) {
-    console.log('CACHE OBJ', cacheByUrl)
     if (cacheByUrl[url]) {
         return Promise.resolve(cacheByUrl[url])
     }
