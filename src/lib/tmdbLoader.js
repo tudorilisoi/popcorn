@@ -1,6 +1,13 @@
 
 const cacheByUrl = {}
 
+const normalizeMovie = movie => ({
+    title: movie.title,
+    id: movie.id,
+    hasPoster: !!movie.poster_path,
+    poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+})
+
 function cachedFetch(url) {
     if (cacheByUrl[url]) {
         return Promise.resolve(cacheByUrl[url])
@@ -19,12 +26,7 @@ function cachedFetch(url) {
 export function searchByTitle(title) {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=c582a638ad7c6555e68892f076404dae&language=en-US&page=1&include_adult=false&query=${title}`
     return cachedFetch(url)
-        .then(data => data.results.map(movie => ({
-            title: movie.title,
-            id: movie.id,
-            poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        })))
-
+        .then(data => data.results.map(normalizeMovie))
 }
 
 
@@ -32,11 +34,7 @@ export function searchByTitle(title) {
 export function searchById(id) {
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=c582a638ad7c6555e68892f076404dae&language=en-US`
     return cachedFetch(url)
-        .then(movie => ({
-            title: movie.title,
-            id: movie.id,
-            poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        }))
+        .then(normalizeMovie)
 }
 
 
@@ -47,10 +45,6 @@ export function getSimilar(id) {
             return Promise.reject(res.statusText);
         }
         return res.json();
-    }).then(data => data.results.map(movie => ({
-        title: movie.title,
-        id: movie.id,
-        poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    })));
+    }).then(data => data.results.map(normalizeMovie));
 }
 

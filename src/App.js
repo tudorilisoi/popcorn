@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="main-wrapper">
-        <div>Navigation here</div>
+        <div>TODO Navigation here</div>
         <div>
           {/* main content */}
           <Router>
