@@ -10,18 +10,23 @@ export default class SearchForm extends Component {
         }
     }
 
+
     render() {
         return (
-            <form onSubmit={ev => {
-                ev.preventDefault()
-                const val = this.inputRef.value
-                if (!val) {
-                    return this.props.history.push('/')
-                }
-                this.props.history.push('/search/' + val)
-            }}>
+            <form
+                onReset={ev => { this.props.history.push('/') }}
+                onSubmit={ev => {
+                    ev.preventDefault()
+                    const val = this.inputRef.value
+                    if (!val) {
+                        return this.props.history.push('/')
+                    }
+                    this.props.history.push('/search/' + val)
+                }}>
 
                 <input name="query" type="text" ref={this._inputRef}></input>
+                <input type="submit" value="Search" />
+                <input type="reset" value="Clear" />
             </form>
         )
     }

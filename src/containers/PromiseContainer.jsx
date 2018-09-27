@@ -74,7 +74,7 @@ export default class PromiseContainer extends Component {
         }
         if (resolved === false) {
             return (
-                <div>There was an error, retry?</div>
+                <div>There was an error, <a href="#" onClick={ev => { ev.preventDefault(); this.firePromise() }}>retry</a>?</div>
             )
         }
         const props = { ...this.props, resolvedValue }
