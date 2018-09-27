@@ -2,7 +2,7 @@
 
 This enables separating data loading and presentation, thus making page components testable in isolation, since they're dumb.
 
-
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
