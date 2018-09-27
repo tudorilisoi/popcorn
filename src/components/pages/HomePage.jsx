@@ -3,6 +3,7 @@ import { PromiseContainerWithRouter } from '../../containers/PromiseContainer'
 import SearchForm from '../SearchForm'
 import { searchByTitle } from '../../lib/tmdbLoader'
 import { Link } from 'react-router-dom'
+import propTypes from 'prop-types'
 
 
 //props: searchString, searchResults, history
@@ -22,6 +23,10 @@ export default function HomePage(props) {
             {results}
         </div>
     )
+}
+HomePage.propTypes = {
+    searchString:propTypes.string,
+    searchResults:propTypes.array.isRequired
 }
 
 const promise = props => {

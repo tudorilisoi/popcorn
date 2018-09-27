@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
 function getRouteKey(props) {
@@ -7,6 +8,11 @@ function getRouteKey(props) {
 
 export default class PromiseContainer extends Component {
 
+
+    static propTypes = {
+        renderFn: propTypes.func.isRequired,
+        promise: propTypes.func.isRequired,
+    }
 
     //props: renderFn and promise
     constructor(props) {

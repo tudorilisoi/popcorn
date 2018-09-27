@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="main-wrapper">
         <div>Navigation here</div>
         <div>
           {/* main content */}
