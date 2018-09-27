@@ -17,31 +17,45 @@ export default class PromiseContainer extends Component {
             resolved: null, //null, true or false
             resolvedValue: null,
         }
+        this.__mounted = false
     }
 
     componentDidMount() {
+        this.__mounted = true
         this.firePromise()
+    }
+
+    componentWillUnmount() {
+        this.__mounted = false
+    }
+
+    setStateSafe(...args) {
+        if (!this.__mounted) {
+            return
+        }
+        return this.setState(...args)
     }
 
     componentDidUpdate() {
         const newKey = getRouteKey(this.props)
         const { key } = this.state
-  
+
         if (key !== newKey) {
-            this.setState({ key: newKey }, () => {
+            this.setStateSafe({ key: newKey }, () => {
                 this.firePromise()
             })
         }
     }
 
     firePromise() {
+
         const { promise, ...rest } = this.props
         this.props.promise(rest)
             .then(resolvedValue => {
-                this.setState({ resolved: true, resolvedValue })
+                this.setStateSafe({ resolved: true, resolvedValue })
             })
             .catch(err => {
-                this.setState({ resolved: false, resolvedValue: err })
+                this.setStateSafe({ resolved: false, resolvedValue: err })
             })
     }
 
