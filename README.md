@@ -1,3 +1,9 @@
+# This project demonstrates using a PromiseContainer to fetch data when React-router is changing paths
+
+This enables separating data loading and presentation, thus making page components testable in isolation, since they're dumb.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
